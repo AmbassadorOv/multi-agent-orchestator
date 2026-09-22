@@ -1,0 +1,163 @@
+system:
+  name: "Masorah Agent Constellation"
+  status: "PROTOTYPED"
+  source_of_truth: "GitHub"
+  operating_principle: "Trust-and-Verification"
+  default_mode: "DRY_RUN"
+  require_human_approval_for_push: true
+
+orchestrator:
+  agent_id: "sy-neurokernel-core"
+  role: "Ingestion, invariant parsing, orchestration"
+  inputs:
+    - spreadsheet
+    - repository_state
+    - provenance_records
+  outputs:
+    - normalized_tasks
+    - execution_plan
+    - trace
+  invariant:
+    - "No task without SourceReference"
+    - "No publication without C1 or C2"
+    - "No VERIFIED state without evidence"
+
+agents:
+  - id: "sy-neurokernel-core"
+    role: "Ingestion & Invariant Parser"
+    stage: "ORCHESTRATE"
+  - id: "wanga-topology-bridge"
+    role: "Graph Router & Repository Structurer"
+    stage: "TOPOLOGY"
+  - id: "tnrl-reasoning-engine"
+    role: "Masorah Linguistic & Semantic Engine"
+    stage: "ANALYZE"
+  - id: "s39-refuge-enforcement"
+    role: "Validation, Conflict Detection & Git Synchronization"
+    stage: "ENFORCE"
+
+logic_gates:
+  c1:
+    name: "Attribution Gate"
+    question: "Who said/did it?"
+    outcomes:
+      - "ATTRIBUTED"
+      - "UNATTRIBUTED"
+      - "DIFFERENT_SOURCE"
+  c2:
+    name: "Temporal Revision Gate"
+    question: "When and at which version/stage?"
+    outcomes:
+      - "CURRENT"
+      - "REVISED"
+      - "CONTRADICTORY"
+      - "UNKNOWN"
+  rule: "C1 precedes C2"
+
+provenance:
+  required: true
+  fields:
+    - SourceReference
+    - source_type
+    - author
+    - date
+    - exact_location
+    - retrieval_timestamp
+    - content_hash
+    - verification_status
+  verification_status:
+    - "STRUCTURALLY_VALID"
+    - "NOT_YET_VERIFIED"
+    - "REPRESENTATION_ONLY"
+    - "VERIFIED"
+
+ontology_currency:
+  enabled: true
+  allowed_for: "verified_work_only"
+
+trace:
+  required_for_every_action: true
+  fields:
+    - trace_id
+    - agent_id
+    - input_reference
+    - action
+    - output_reference
+    - timestamp
+    - status
+
+repository_topology:
+  central:
+    - "Masorah-Central-Core"
+  codex:
+    - "Masorah-Codex-Imperial"
+  book_pattern: "Book-{book}"
+  chapter_pattern: "Chapter-{book}-{chapter}"
+  event_pattern: "sync_{book}_{chapter}_{sequence}.json"
+  fanout:
+    - "central"
+    - "codex"
+    - "book"
+    - "chapter"
+
+branch_expansion:
+  target: 7000
+  levels:
+    level_0:
+      name: "Orchestrator"
+      target: 1
+    level_1:
+      name: "Regional/Domain"
+      target: 70
+    level_2:
+      name: "Local/Specialized"
+      target: 700
+    level_3:
+      name: "Micro/Agent"
+      target: 6300
+  activation_rule: "Pilot -> Validate -> Expand"
+  no_unverified_mass_creation: true
+
+commercial_constitution:
+  model: "smart-contract-constituted"
+  precedence:
+    - "Smart Contracts"
+    - "Commercial Constitution"
+    - "Algorithmic Governance"
+    - "Commercial Authority"
+  note: "The Commercial Constitution is constituted by the smart-contract layer; it is not an authority above the contracts."
+
+excluded_until_explicitly_activated:
+  - "Maimonides contradiction reasons 3-7"
+  - "full spiral/comprehensive logic"
+  - "letter-combination as primary processor"
+  - "9D/photonics/Vitruvius execution layer"
+  - "ordinary territorial constitution"
+
+network_targets:
+  phase_1:
+    - "X"
+    - "Telegram"
+  phase_2:
+    - "LinkedIn"
+    - "Discord"
+  phase_3:
+    - "Facebook"
+    - "WhatsApp Business/API"
+  not_initial:
+    - "Instagram"
+    - "TikTok"
+
+deployment_policy:
+  push_mode: "APPROVAL_REQUIRED"
+  conflict_policy: "QUARANTINE"
+  overload_policy: "QUARANTINE"
+  duplicate_policy: "DEDUPE_BY_CONTENT_HASH"
+  branch_policy: "NO_BRANCH_WITHOUT_SOURCEREFERENCE"
+  commit_policy: "TRACEABLE"
+  verification_policy: "NO_VERIFIED_WITHOUT_EVIDENCE"
+
+source:
+  spreadsheet_id: "1mkQyj6by1AtBUabpbaxaZq9Z2X3pX8ZpwG91ZCSOEYs"
+  sheet_url: null
+  note: "User will supply/attach the final spreadsheet link later."
