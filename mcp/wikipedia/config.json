@@ -1,0 +1,11 @@
+{
+  "defaultWiki": "en.wikipedia.org",
+  "wikis": {
+    "en.wikipedia.org": {
+      "sitename": "Wikipedia",
+      "server": "https://en.wikipedia.org",
+      "articlepath": "/wiki",
+      "scriptpath": "/w"
+    }
+  }
+}
