@@ -1,0 +1,31 @@
+name: Logic Book Research Iteration
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  iterate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run bounded research iteration
+        env:
+          CODEX_API_KEY: ${{ secrets.CODEX_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${CODEX_API_KEY:-}" ]]; then
+            echo "CODEX_API_KEY is not configured; stopping without changing data."
+            exit 0
+          fi
+          if ! command -v codex >/dev/null 2>&1; then
+            npm install -g @openai/codex
+          fi
+          bash mcp/wikipedia/setup-codex.sh
+          codex exec --full-auto "$(cat research/logic_book/iteration-prompt.md)"
