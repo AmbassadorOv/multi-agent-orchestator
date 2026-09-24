@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LogicBookResearchRecord",
+  "type": "object",
+  "required": [
+    "iteration_id",
+    "source",
+    "claim",
+    "provenance",
+    "status"
+  ],
+  "properties": {
+    "iteration_id": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "tool",
+        "uri"
+      ],
+      "properties": {
+        "tool": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "page_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "claim": {
+      "type": "string"
+    },
+    "term": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "chapter": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "relation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "status": {
+      "enum": [
+        "observed",
+        "cross_checked",
+        "candidate",
+        "accepted",
+        "rejected",
+        "unresolved"
+      ]
+    },
+    "drift": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "node": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
