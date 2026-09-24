@@ -1,0 +1,17 @@
+{
+  "project": "ספר ההגיון / Logic Book",
+  "version": 1,
+  "frontier": {
+    "chapter": "שער י״ג",
+    "focus": "terminology and the 17/18-name discrepancy",
+    "reason": "known structural inconsistency requiring source-level verification"
+  },
+  "last_iteration": null,
+  "status": "ready",
+  "invariants": [
+    "preserve source provenance",
+    "do not invent exact numeric weights",
+    "do not collapse independent extractions",
+    "trace drift backward to earliest unsupported node"
+  ]
+}
