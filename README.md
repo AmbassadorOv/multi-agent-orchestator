@@ -126,3 +126,20 @@ Sentence: I am feeling so good today.
 3. Streamlit UI
 
 ![screenshot_streamlit](./screenshots/streamlit.png)
+
+## 22-Letter / 28-Mode Logic Layer
+
+The repository now contains a deterministic symbolic layer under `logic_engine/`.
+It introduces a 22-node ordinary Hebrew-letter registry, lazy combinatorial operations,
+and 28 stable reasoning slots. The layer is intentionally placed before the existing
+neural agents:
+
+FORM -> SYMBOL NORMALIZATION -> LOGICAL REPRESENTATION -> COMBINATORIAL ENGINE -> 28-MODE ROUTER -> NEURAL AGENT -> VERIFICATION
+
+The engine computes exact combinatorial cardinalities without materializing factorial-scale
+spaces. For the full 22-letter alphabet, pairs provide 231 unordered combinations and
+462 ordered selections.
+
+The symbolic layer preserves the invariant that a representation is not identical to
+its physical referent. Source-derived historical names for the 28 modes are not asserted
+until independently verified.
