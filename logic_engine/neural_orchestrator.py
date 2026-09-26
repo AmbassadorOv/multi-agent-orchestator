@@ -4,6 +4,7 @@ from typing import Any, Dict, List, Sequence
 from .combinator import CombinationEngine
 from .hebrew22 import HEBREW_22, LETTER_BY_SYMBOL
 from .modes28 import THOUGHT_MODES_28, get_mode
+from .connectivity import build_base_connectivity
 
 @dataclass(frozen=True)
 class OrchestrationRequest:
@@ -28,6 +29,7 @@ class NeuralLogicOrchestrator:
     def __init__(self, alphabet=HEBREW_22):
         self.alphabet = tuple(alphabet)
         self.engine = CombinationEngine([n.symbol for n in self.alphabet])
+        self.connectivity = build_base_connectivity()
 
     def prepare(self, request: OrchestrationRequest) -> OrchestrationResult:
         mode = get_mode(request.mode_id)
@@ -62,6 +64,8 @@ class NeuralLogicOrchestrator:
                       "gematria":LETTER_BY_SYMBOL[s].gematria} for s in letters],
             "mode_count":len(THOUGHT_MODES_28),
             "selected_mode":mode.mode_id,
+            "connectivity": self.connectivity.as_dict(),
+            "active_edges": [e.__dict__ for e in self.connectivity.edges()],
         }
         trace.append({"stage":"OUTPUT_OBJECT","status":"READY_FOR_NEURAL_LAYER",
                       "invariant":"symbolic representation is not the physical referent"})
