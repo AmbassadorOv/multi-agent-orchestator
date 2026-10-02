@@ -1,0 +1,18 @@
+version: "0.1"
+groups:
+  research:
+    capabilities: [web_research, source_analysis, evidence_collection]
+    accepts: [REQUEST, QUESTION, VERIFICATION_REQUEST]
+    returns: [RESPONSE, RESULT, ESCALATION]
+  documents:
+    capabilities: [document_generation, pdf, docx, pptx]
+    accepts: [REQUEST, HANDOFF]
+    returns: [RESULT, ERROR, ESCALATION]
+  browser:
+    capabilities: [navigation, page_reading, form_interaction, fill_web_form]
+    accepts: [REQUEST, HANDOFF]
+    returns: [RESULT, ERROR, ESCALATION]
+  presentation:
+    capabilities: [powerpoint, speaker_notes, charts]
+    accepts: [REQUEST, HANDOFF]
+    returns: [RESULT]
