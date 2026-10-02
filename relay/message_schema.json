@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cross Group Agent Relay Message",
+  "type": "object",
+  "required": ["message_id","task_id","source_agent","source_group","destination_agent","destination_group","message_type","priority","payload","context_refs","evidence_refs","verification_state","requires_response","requires_human_approval","timestamp"],
+  "properties": {
+    "message_id": {"type":"string","minLength":1},
+    "task_id": {"type":"string","minLength":1},
+    "parent_task_id": {"type":["string","null"]},
+    "source_agent": {"type":"string","minLength":1},
+    "source_group": {"type":"string","minLength":1},
+    "destination_agent": {"type":"string","minLength":1},
+    "destination_group": {"type":"string","minLength":1},
+    "message_type": {"enum":["REQUEST","RESPONSE","QUESTION","RESULT","HANDOFF","STATUS","ERROR","ESCALATION","VERIFICATION_REQUEST","APPROVAL_REQUEST"]},
+    "priority": {"enum":["LOW","NORMAL","HIGH","CRITICAL"]},
+    "payload": {"type":"object"},
+    "context_refs": {"type":"array","items":{"type":"string"}},
+    "evidence_refs": {"type":"array","items":{"type":"string"}},
+    "verification_state": {"enum":["UNVERIFIED","NOT_YET_VERIFIED","VERIFIED"]},
+    "requires_response": {"type":"boolean"},
+    "requires_human_approval": {"type":"boolean"},
+    "timestamp": {"type":"string","format":"date-time"}
+  },
+  "additionalProperties": true
+}
