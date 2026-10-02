@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Relay Task State",
+  "type": "string",
+  "enum": ["CREATED","ROUTED","SENT","ACKNOWLEDGED","IN_PROGRESS","WAITING","COMPLETED","FAILED","ESCALATED","CANCELLED"]
+}
