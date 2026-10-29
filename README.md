@@ -1,4 +1,4 @@
-# Multi Agent Orchestator
+# Multi Agent Orchestrator
 Implementation of an orchestrator that coordinates multiple specialized AI agents to solve complex tasks. The orchestrator  determines which agent to use for each subtask, manages the flow of information between agents, and integrate their outputs into a cohesive solution.
 
 There are three agents in the system
